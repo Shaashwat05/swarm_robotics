@@ -5,6 +5,38 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(2, GPIO.OUT)
+GPIO.setup(3, GPIO.OUT)
+GPIO.setup(4, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
+
+
+def right():
+    GPIO.output(2, GPIO.HIGH)
+    GPIO.output(3, GPIO.LOW)
+    GPIO.output(7, GPIO.HIGH)
+    GPIO.output(17, GPIO.LOW)
+
+def left():
+    GPIO.output(3, GPIO.HIGH)
+    GPIO.output(2, GPIO.LOW)
+    GPIO.output(17, GPIO.HIGH)
+    GPIO.output(7, GPIO.LOW)
+
+def back():
+    GPIO.output(2, GPIO.HIGH)
+    GPIO.output(3, GPIO.LOW)
+    GPIO.output(17, GPIO.HIGH)
+    GPIO.output(7, GPIO.LOW)
+
+def forward():
+    GPIO.output(3, GPIO.HIGH)
+    GPIO.output(2, GPIO.LOW)
+    GPIO.output(7, GPIO.HIGH)
+    GPIO.output(17, GPIO.LOW)
+
+
 
 
 s=socket.socket()
@@ -14,17 +46,16 @@ port=9999
 s.connect((host,port))
 
 while(True):
-    print("hi")
     data=s.recv(1024)
-    print("hi1")
-    if(data[0:2].decode("utf-8")=="cd"):
-        os.chdir(data[3:].decode("utf-8"))
-
-    if(len(data)>0):
-        cmd=subprocess.Popen(data[:].decode("utf-8"),shell=True,stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
-        output_byte=cmd.stdout.read()+cmd.stderr.read()
-        output_str=str(output_byte,"utf-8")
-        currentWD=os.getcwd()+">"
-        s.send(str.encode(output_str+currentWD))
-        print('hi2')
-        print(output_str)
+    data = data.decode(("utf-8"))
+    if (data == 'right'):
+        right()
+        # client_response=str(conn.recv(1024),"utf-8")
+    elif (data == 'left'):
+        left()
+        # client_response = str(conn.recv(1024), "utf-8")
+    elif (data == 'back'):
+        back()
+        # client_response = str(conn.recv(1024), "utf-8")
+    else:
+        forward()

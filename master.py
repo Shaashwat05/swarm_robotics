@@ -9,6 +9,31 @@ GPIO.setup(4, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
 
 
+def right():
+    GPIO.output(2, GPIO.HIGH)
+    GPIO.output(3, GPIO.LOW)
+    GPIO.output(7, GPIO.HIGH)
+    GPIO.output(17, GPIO.LOW)
+
+def left():
+    GPIO.output(3, GPIO.HIGH)
+    GPIO.output(2, GPIO.LOW)
+    GPIO.output(17, GPIO.HIGH)
+    GPIO.output(7, GPIO.LOW)
+
+def back():
+    GPIO.output(2, GPIO.HIGH)
+    GPIO.output(3, GPIO.LOW)
+    GPIO.output(17, GPIO.HIGH)
+    GPIO.output(7, GPIO.LOW)
+
+def forward():
+    GPIO.output(3, GPIO.HIGH)
+    GPIO.output(2, GPIO.LOW)
+    GPIO.output(7, GPIO.HIGH)
+    GPIO.output(17, GPIO.LOW)
+
+
 def create_socket():
     try:
         global host
