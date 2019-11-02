@@ -1,6 +1,7 @@
 import socket
 import sys
 import RPi.GPIO as GPIO
+import time
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(2, GPIO.OUT)
@@ -14,24 +15,28 @@ def right():
     GPIO.output(3, GPIO.LOW)
     GPIO.output(7, GPIO.HIGH)
     GPIO.output(17, GPIO.LOW)
+    time.sleep(0.5)
 
 def left():
     GPIO.output(3, GPIO.HIGH)
     GPIO.output(2, GPIO.LOW)
     GPIO.output(17, GPIO.HIGH)
     GPIO.output(7, GPIO.LOW)
+    time.sleep(0.5)
 
 def back():
     GPIO.output(2, GPIO.HIGH)
     GPIO.output(3, GPIO.LOW)
     GPIO.output(17, GPIO.HIGH)
     GPIO.output(7, GPIO.LOW)
+    time.sleep(0.5)
 
 def forward():
     GPIO.output(3, GPIO.HIGH)
     GPIO.output(2, GPIO.LOW)
     GPIO.output(7, GPIO.HIGH)
     GPIO.output(17, GPIO.LOW)
+    time.sleep(0.5)
 
 
 def create_socket():
