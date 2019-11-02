@@ -9,6 +9,7 @@ GPIO.setup(3, GPIO.OUT)
 GPIO.setup(4, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
 
+seq = ['forward', 'forward', 'forward', 'backward', 'right', 'right', 'left']
 
 def right():
     GPIO.output(2, GPIO.HIGH)
@@ -75,9 +76,7 @@ def accept():
 
 
 def send_command(conn):
-    while True:
-        #print("hi")
-        cmd=input()
+    for cmd in seq:
         if(cmd=="quit"):
             conn.close()
             s.close()
